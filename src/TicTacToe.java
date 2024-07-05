@@ -8,24 +8,36 @@ public class TicTacToe extends javax.swing.JFrame {
     int[][] winningTiles = {{0,1,2} , {0,3,6} , {0,4,8},
                             {3,4,5} , {1,4,7} , {6,4,2},
                             {6,7,8} , {2,5,8}};
-    String turn = "p1";
-    void selectTile(int selectedTile, JButton button, String turn){
-        button.setText(checkPlayer(turn));
+    int move = 1;
+    boolean isRunning = true;
+    void selectTile(int selectedTile, JButton button, int move){
+        button.setText(checkPlayer(move));
+        addTile(selectedTile, move);
+    }
+    
+    void addTile(int selectedTile, int move){
+        int i = 0;
+        if (move % 2 != 0){
+            p1SelectedTiles[i] = selectedTile;
+        }else{
+            p2SelectedTiles[i] = selectedTile;
+        }
+    }
+    
+    void checkWinner(int[] playerSelectedTiles){
         
     }
     
-    int addTile(){
-        int playerTile = 0;
-        return playerTile;
-    }
-    
-    String checkPlayer(String turn){
+    String checkPlayer(int move){
         String symbol;
-        if (turn == "p1"){
+        
+        if (move % 2 != 0){
             symbol = "X";
+            
         }else{
             symbol = "O";
         }
+        this.move++;
         return symbol;
     }
     
@@ -210,39 +222,39 @@ public class TicTacToe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tileActionPerformed
-        selectTile(0,tile, turn);
+        selectTile(0,tile, move);
     }//GEN-LAST:event_tileActionPerformed
 
     private void tile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tile1ActionPerformed
-        selectTile(1,tile1, turn);
+        selectTile(1,tile1, move);
     }//GEN-LAST:event_tile1ActionPerformed
 
     private void tile2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tile2ActionPerformed
-        selectTile(2,tile2, turn);
+        selectTile(2,tile2, move);
     }//GEN-LAST:event_tile2ActionPerformed
 
     private void tile3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tile3ActionPerformed
-       selectTile(3,tile3, turn);
+       selectTile(3,tile3, move);
     }//GEN-LAST:event_tile3ActionPerformed
 
     private void tile4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tile4ActionPerformed
-        selectTile(4,tile4, turn);
+        selectTile(4,tile4, move);
     }//GEN-LAST:event_tile4ActionPerformed
 
     private void tile5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tile5ActionPerformed
-        selectTile(5,tile5, turn);
+        selectTile(5,tile5, move);
     }//GEN-LAST:event_tile5ActionPerformed
 
     private void tile6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tile6ActionPerformed
-        selectTile(6,tile6, turn);
+        selectTile(6,tile6, move);
     }//GEN-LAST:event_tile6ActionPerformed
 
     private void tile7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tile7ActionPerformed
-        selectTile(7,tile7, turn);
+        selectTile(7,tile7, move);
     }//GEN-LAST:event_tile7ActionPerformed
 
     private void tile8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tile8ActionPerformed
-        selectTile(8,tile8, turn);
+        selectTile(8,tile8, move);
     }//GEN-LAST:event_tile8ActionPerformed
 
     public static void main(String args[]) {
