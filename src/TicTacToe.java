@@ -4,23 +4,38 @@ public class TicTacToe extends javax.swing.JFrame {
     public TicTacToe() {
         initComponents();
     }
-    int[] p1SelectedTiles , p2SelectedTiles;
+    int[] p1SelectedTiles = new int[9]; 
+    int[] p2SelectedTiles = new int[8];
+    int p1TileCount = 0, p2TileCount = 0;
     int[][] winningTiles = {{0,1,2} , {0,3,6} , {0,4,8},
                             {3,4,5} , {1,4,7} , {6,4,2},
                             {6,7,8} , {2,5,8}};
     int move = 1;
     boolean isRunning = true;
     void selectTile(int selectedTile, JButton button, int move){
-        button.setText(checkPlayer(move));
-        addTile(selectedTile, move);
+        addTile(selectedTile, button, move);
+        System.out.println("p1 Tiles: " + p1SelectedTiles[0]);
     }
     
-    void addTile(int selectedTile, int move){
-        int i = 0;
+    void addTile(int selectedTile, JButton button, int move){
         if (move % 2 != 0){
-            p1SelectedTiles[i] = selectedTile;
+            if(!checkUsedTile(selectedTile, p1SelectedTiles)&& 
+               !checkUsedTile(selectedTile, p2SelectedTiles)){
+                p1SelectedTiles[p1TileCount++] = selectedTile;
+                button.setText("X");
+            }
+            else{
+                System.out.println("Tile Already Used");
+            }
         }else{
-            p2SelectedTiles[i] = selectedTile;
+            if(!checkUsedTile(selectedTile, p1SelectedTiles)&& 
+               !checkUsedTile(selectedTile, p2SelectedTiles)){
+                p2SelectedTiles[p1TileCount++] = selectedTile;
+                button.setText("O");
+            }
+            else{
+                System.out.println("Tile Already Used");
+            }
         }
     }
     
@@ -28,17 +43,16 @@ public class TicTacToe extends javax.swing.JFrame {
         
     }
     
-    String checkPlayer(int move){
-        String symbol;
-        
-        if (move % 2 != 0){
-            symbol = "X";
-            
-        }else{
-            symbol = "O";
+    boolean checkUsedTile(int selectedTile, int[] playerSelectedTiles){
+        boolean used = false;
+        if (playerSelectedTiles != null){
+            for(int i = 0; i <= playerSelectedTiles.length - 1 ; i++){
+                if(selectedTile == playerSelectedTiles[i]){
+                    used = true;
+                }
+            }
         }
-        this.move++;
-        return symbol;
+        return used;
     }
     
     @SuppressWarnings("unchecked")
